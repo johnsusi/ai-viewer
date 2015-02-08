@@ -1,0 +1,18 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+
+<file>contents/css/blog.css</file>
+<file>contents/css/form.css</file>
+<file>contents/css/sidebar.css</file>
+<file>contents/header.html</file>
+<file>contents/sidebar.html</file>
+<file>contents/main.html</file>
+<file>contents/overview.html</file>
+<file>contents/filter.html</file>
+<file>contents/help.html</file>
+
+<file>images/lena.jpg</file>
+<file>images/nasa.jpg</file>
+
+</qresource>
+</RCC>
