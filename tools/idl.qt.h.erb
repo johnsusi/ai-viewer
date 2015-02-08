@@ -1,0 +1,62 @@
+#ifndef __<%= qtname.to_s.upcase.gsub('.','_') %>_HPP
+#define __<%= qtname.to_s.upcase.gsub('.','_') %>_HPP
+
+class Qt<%= qtname %> : public QAbstractItemModel, <%= name %> {
+
+  Q_OBJECT
+
+<% for property in properties -%>
+  Q_PROPERTY(<%= property[:qttype] %> <%= property[:name] %> READ <%= property[:name] -%>)
+<% end -%>
+
+public:
+
+  int columnCount(const QModelIndex &) const override
+  {
+    return <%= properties.size %>;
+  }
+
+  int rowCount(const QModelIndex &) const override 
+  {
+    return 1;
+  }
+
+  QVariant data(const QModelIndex & index, int /*role*/) const override
+  {
+
+    if (index.row() == 0) {
+<% properties.each_with_index do |property, index| -%>
+      if (index.column() == <%= index %>) return <%= property[:name] %>();
+<% end -%>
+    }
+    if (index.row() == 0 && index.column() == 0) return QVariant::fromValue(QString::fromStdString(email));
+    return {};
+  }
+
+  QModelIndex index(int row, int column, const QModelIndex & /*parent*/) const override
+  {
+    return createIndex(row, column);
+  }
+
+  QModelIndex parent(const QModelIndex & /*index*/) const override
+  {
+    return {};
+  }
+
+  <% for property in properties %>
+  <%= property[:qttype] %> <%= property[:name] %>() const {
+    return <%= 
+        case property[:qttype]
+        when 'QString'
+          "QString::fromStdString(#{name}::#{property[:name]})"
+        else
+          "#{name}::#{property[:name]}"
+        end %>;
+  }
+  <% end %>
+
+
+
+};
+
+#endif

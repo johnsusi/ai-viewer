@@ -1,0 +1,14 @@
+#ifndef __<%= name.to_s.upcase.gsub('.','_') %>_H
+#define __<%= name.to_s.upcase.gsub('.','_') %>_H
+
+#import <Foundation/Foundation.h>
+
+@interface <%= name %> : NSObject
+
+<% for property in properties -%>
+@property (readonly) <%= property[:nstype] %> <%= property[:name] %>;
+<% end %>
+
+@end
+
+

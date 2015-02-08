@@ -1,0 +1,28 @@
+#include "<%= name.to_s.downcase %>.hpp"
+
+#include "json.h"
+
+void <%= name %>::operator()(const std::string& name) {
+  for (auto& command : commands) {
+    if (command.first == name) return command.second();
+  }
+}
+
+<% render = lambda do|what| %>
+      <%= if what[:optional]
+      "(#{what[:name]} ? to_json(\"#{what[:name]}\") + \":\" + to_json(*#{what[:name]}) : \"\")"
+    else
+      "to_json(\"#{what[:name]}\") + \":\" + to_json(#{what[:name]})"
+    end
+-%>
+<% end %>
+
+
+std::string <%= name %>::json() const {
+  return std::string("{") + <% render[properties.first]
+    properties[1..-1].each do |property|%><%= '+ "," +' -%><%
+      render[property]
+ end %> + "}";
+}
+
+

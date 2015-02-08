@@ -1,0 +1,30 @@
+#ifndef __<%= name.to_s.upcase.gsub('.','_') %>_HPP
+#define __<%= name.to_s.upcase.gsub('.','_') %>_HPP
+
+#include <functional>
+#include <string>
+#include <utility>
+#include <vector>
+
+#include <experimental/optional>
+using namespace std::experimental;
+
+struct <%= name %> {
+<% for property in properties.collect { |value| return value[:type] != 'command' }  %>
+  <%= property[:cpptype] %> <%= property[:name] %><%=
+  if property[:value]
+    if property[:cpptype] == 'std::string'
+      " = \"#{property[:value]}\""
+    else
+      " = #{property[:value]}"
+    end
+  end -%>;<% end %>
+
+  std::vector<std::pair<std::string, std::function<void()>>> commands;
+
+  void operator()(const std::string&);
+  std::string json() const;
+};
+
+#endif
+

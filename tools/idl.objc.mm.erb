@@ -1,0 +1,35 @@
+#import "<%= name %>.h"
+#include "<%= name.downcase %>.hpp"
+
+@implementation <%= name %>
+{
+  <%= name %> subject;
+}
+
+<% for property in properties %>
+-(<%= property[:nstype] %>)<%= property[:name] %>
+{
+<% if property[:optional] -%>
+  return subject.<%= property[:name] %> ? <%=
+    case property[:type]
+    when 'optional<bool>'
+      "[NSNumber numberWithBool:*subject.#{property[:name]}]"
+    when 'optional<int>'
+      "[NSNumber numberWithInt:*subject.#{property[:name]}]"
+    when 'optional<double>'
+      "[NSNumber numberWithDouble:*subject.#{property[:name]}]"
+    when 'optional<string>'
+      "[[NSString alloc] initWithUTF8String:subject.#{property[:name]}->c_str()]"
+     else
+      "/* #{property[:type]} */"
+    end
+  -%> : nil;
+<% else -%>
+  return subject.<%= property[:name] -%>;
+<% end -%>
+}
+<% end %>
+
+@end
+
+
