@@ -1,0 +1,21 @@
+[submodule "3rdparty/d3"]
+	path = 3rdparty/d3
+	url = git@github.com:mbostock/d3.git
+[submodule "3rdparty/xdispatch"]
+	path = 3rdparty/xdispatch
+	url = git@github.com:mlba-team/xdispatch.git
+[submodule "3rdparty/CppMicroServices"]
+	path = 3rdparty/CppMicroServices
+	url = git@github.com:saschazelzer/CppMicroServices.git
+[submodule "3rdparty/opencv"]
+	path = 3rdparty/opencv
+	url = git@github.com:Itseez/opencv.git
+[submodule "3rdparty/parallelstl"]
+	path = 3rdparty/parallelstl
+	url = https://git01.codeplex.com/parallelstl
+[submodule "3rdparty/Optional"]
+	path = 3rdparty/Optional
+	url = git@github.com:akrzemi1/Optional.git
+[submodule "3rdparty/MathJax"]
+	path = 3rdparty/MathJax
+	url = git@github.com:mathjax/MathJax.git
