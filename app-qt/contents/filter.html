@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Filters</title>
+</head>
+<body>
+  <h1 class="page-header">Filters</h1>
+  <div class="row">
+  <div class="col-md-5">
+    <object
+      id="filter"
+      type="application/x-qt-plugin"
+      classid="se.susi.Filter"
+      data="qrc:///images/nasa.jpg"
+      width="500" height="500"
+    ></object>
+  </div>
+  <div class="col-md-3">
+   <form>
+    <div class="form-group">
+      <button class="btn btn-lg btn-primary btn-block" data-action="grayscale">Grayscale</button>
+      <button class="btn btn-lg btn-primary btn-block" data-action="sharpen">Sharpen</button>
+      <button class="btn btn-lg btn-primary btn-block" data-action="blur">Smooth</button>
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control" placeholder="128"></button>
+      <button class="btn btn-lg btn-primary btn-block" data-action="threshold">Threshold</button>
+    </div>
+    </form>
+  </div>
+  </div>
+  <script>
+
+$(function () {
+
+  $('button').click(function (event) {
+    event.preventDefault();
+    var action = $(event.target).attr('data-action');
+    console.log(action);
+    if (action) filter[action]();
+  });
+
+
+});
+
+  </script>
+</body>
+</html>

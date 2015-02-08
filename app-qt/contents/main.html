@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>John's AI Viewer</title>
+
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/form.css" rel="stylesheet">
+  <link href="css/blog.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <div class="container-fluid">
+    <div class="main">
+    </div>
+  </div>
+
+  <script src="/assets/js/jquery.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script>
+
+function navigate(url) {
+  console.log(url);
+  $('.main').load( url );
+}
+
+$(function() {
+  navigate('overview.html');
+});
+  </script>
+</body>
+</html>
+
+
