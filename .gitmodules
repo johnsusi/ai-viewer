@@ -19,3 +19,9 @@
 [submodule "3rdparty/MathJax"]
 	path = 3rdparty/MathJax
 	url = git@github.com:mathjax/MathJax.git
+[submodule "3rdparty/flatbuffers"]
+	path = 3rdparty/flatbuffers
+	url = git@github.com:google/flatbuffers.git
+[submodule "3rdparty/capnproto"]
+	path = 3rdparty/capnproto
+	url = git@github.com:sandstorm-io/capnproto.git
