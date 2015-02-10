@@ -1,0 +1,25 @@
+namespace bw;
+
+table Player {
+  id:int;
+  name:string;
+}
+
+table Game {
+  players:[Player];
+}
+
+table Frame {
+  id:int;
+}
+
+
+
+table ChangeSet {
+  game:Game;
+  frame:Frame;
+}
+
+root_type ChangeSet;
+file_identifier "BWAI";
+file_extension "bwai";
