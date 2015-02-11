@@ -25,3 +25,6 @@
 [submodule "3rdparty/capnproto"]
 	path = 3rdparty/capnproto
 	url = git@github.com:sandstorm-io/capnproto.git
+[submodule "3rdparty/cppzmq"]
+	path = 3rdparty/cppzmq
+	url = https://github.com/zeromq/cppzmq.git

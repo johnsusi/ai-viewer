@@ -13,7 +13,7 @@ struct Game;
 struct Frame;
 struct ChangeSet;
 
-struct Player FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Player : public flatbuffers::Table {
   int32_t id() const { return GetField<int32_t>(4, 0); }
   const flatbuffers::String *name() const { return GetPointer<const flatbuffers::String *>(6); }
   bool Verify(flatbuffers::Verifier &verifier) const {
@@ -47,7 +47,7 @@ inline flatbuffers::Offset<Player> CreatePlayer(flatbuffers::FlatBufferBuilder &
   return builder_.Finish();
 }
 
-struct Game FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Game : public flatbuffers::Table {
   const flatbuffers::Vector<flatbuffers::Offset<Player>> *players() const { return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<Player>> *>(4); }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -77,7 +77,7 @@ inline flatbuffers::Offset<Game> CreateGame(flatbuffers::FlatBufferBuilder &_fbb
   return builder_.Finish();
 }
 
-struct Frame FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Frame : public flatbuffers::Table {
   int32_t id() const { return GetField<int32_t>(4, 0); }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -105,7 +105,7 @@ inline flatbuffers::Offset<Frame> CreateFrame(flatbuffers::FlatBufferBuilder &_f
   return builder_.Finish();
 }
 
-struct ChangeSet FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct ChangeSet : public flatbuffers::Table {
   const Game *game() const { return GetPointer<const Game *>(4); }
   const Frame *frame() const { return GetPointer<const Frame *>(6); }
   bool Verify(flatbuffers::Verifier &verifier) const {
