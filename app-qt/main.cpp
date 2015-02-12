@@ -118,7 +118,7 @@ public slots:
     qDebug() << "threshold";
     Timer t;
     auto tmp = convertToMat(raw_image);
-    cv::cvtColor(tmp, tmp, cv::RBG2GRAY);
+    cv::cvtColor(tmp, tmp, cv::BGR2GRAY);
     tmp = tmp > 128;
     cv::resize(tmp, tmp, {500, 500});
     auto img = convertToQImage(tmp);
@@ -142,7 +142,7 @@ public slots:
   void grayscale() {
     Timer t;
     auto tmp = convertToMat(raw_image);
-    cv::cvtColor(tmp, tmp, cv::RGB2GRAY);
+    cv::cvtColor(tmp, tmp, cv::BGR2GRAY);
 //    cv::resize(tmp, tmp, {500, 500});
     auto img = convertToQImage(tmp);
     qDebug() << "time:" << t.milliseconds() << "ms";
