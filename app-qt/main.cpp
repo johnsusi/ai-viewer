@@ -118,7 +118,7 @@ public slots:
     qDebug() << "threshold";
     Timer t;
     auto tmp = convertToMat(raw_image);
-    cv::cvtColor(tmp, tmp, CV_RGB2GRAY);
+    cv::cvtColor(tmp, tmp, cv::CV_RGB2GRAY);
     tmp = tmp > 128;
     cv::resize(tmp, tmp, {500, 500});
     auto img = convertToQImage(tmp);
@@ -131,7 +131,7 @@ public slots:
     Timer t;
     auto tmp = convertToMat(raw_image);
     cv::GaussianBlur(tmp, tmp, cv::Size(3,3), 0, 0);
-    cv::resize(tmp, tmp, {500, 500});
+//    cv::resize(tmp, tmp, {500, 500});
     auto img = convertToQImage(tmp);
     qDebug() << "time:" << t.milliseconds() << "ms";
     scaleImage( img );
@@ -142,8 +142,8 @@ public slots:
   void grayscale() {
     Timer t;
     auto tmp = convertToMat(raw_image);
-    cv::cvtColor(tmp, tmp, CV_RGB2GRAY);
-    cv::resize(tmp, tmp, {500, 500});
+    cv::cvtColor(tmp, tmp, cv::CV_RGB2GRAY);
+//    cv::resize(tmp, tmp, {500, 500});
     auto img = convertToQImage(tmp);
     qDebug() << "time:" << t.milliseconds() << "ms";
     scaleImage( img );
@@ -155,29 +155,31 @@ public slots:
     cv::Mat mask;
     cv::GaussianBlur(tmp, mask, cv::Size(0, 0), 3);
     cv::addWeighted(tmp, 1.5, mask, -0.5, 0, tmp);
-    cv::resize(tmp, tmp, {500, 500});
+//    cv::resize(tmp, tmp, {500, 500});
     auto img = convertToQImage(tmp);
     qDebug() << "time:" << t.milliseconds() << "ms";
     scaleImage( img );
   }
 
   void scaleImage(const QImage& input) {
-      QImage image;
-      if (req_width > 0 && req_height == 0)      image = input.scaledToWidth(req_width, Qt::SmoothTransformation);
-      else if (req_width == 0 && req_height > 0) image = input.scaledToHeight(req_height, Qt::SmoothTransformation);
-      else if (req_width > 0 && req_height > 0)  image = input.scaled(req_width, req_height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-      else image = input;
+
+      if (req_width > 0 && req_height == 0)      cur_image = input.scaledToWidth(req_width, Qt::SmoothTransformation);
+      else if (req_width == 0 && req_height > 0) cur_image = input.scaledToHeight(req_height, Qt::SmoothTransformation);
+      else if (req_width > 0 && req_height > 0)  cur_image = input.scaled(req_width, req_height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+      else cur_image = input;
 
 
-      setFixedSize(std::min(req_width, input.width()),
-                  std::min(req_height, input.height()));
+//      setFixedSize(std::min(req_width, cur_image.width()),
+//                   std::min(req_height, cur_image.height()));
 
-      setPixmap(QPixmap::fromImage(input));
+      qDebug() << input.width() << input.height() << width() << height() << cur_image.width() << cur_image.height();
+      setPixmap(QPixmap::fromImage(cur_image));
+      setScaledContents(true);
 //      updateGeometry();
   }
 private:
 
-  QImage raw_image;
+  QImage raw_image, cur_image;
   cv::Mat cv_image;
 
   int req_width, req_height;

@@ -11,8 +11,9 @@
 <file>contents/filter.html</file>
 <file>contents/help.html</file>
 
-<file>images/lena.jpg</file>
-<file>images/nasa.jpg</file>
+<!--file>images/lena.jpg</file-->
+<!--file>images/nasa.jpg</file-->
+<file>images/nopanic.jpg</file>
 
 </qresource>
 </RCC>
