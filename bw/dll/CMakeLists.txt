@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 2.8)
 
 include(GenerateExportHeader)
 
-project(ai-viewer/bw)
+project(bw)
 
 add_library(BroadcastModule SHARED BroadcastModule.cpp BroadcastModule.h Dll.cpp)
 
