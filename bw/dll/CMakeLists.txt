@@ -6,6 +6,7 @@ project(bw)
 
 if (WIN32)
   include_directories(
+      ".."
       "../../include"
       "C:/bwapi/include"
       "C:/zmq/include"
