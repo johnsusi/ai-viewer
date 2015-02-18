@@ -107,7 +107,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\ZMQ\lib\libzmq-v120-mt-4_0_4.lib" />
+    <Library Include="C:\ZMQ\lib\libzmq-v120-mt-4_0_4.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
