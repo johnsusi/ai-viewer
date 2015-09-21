@@ -1,0 +1,12 @@
+{
+  "name": "ai-viewer",
+  "version": "0.0.1",
+  "description": "AI Viewer App",
+  "LICENSE": "UNLICENSED",
+  "dependencies": {
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "react-tools": "^0.13.3"
+  }
+}
