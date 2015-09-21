@@ -26,3 +26,11 @@
 *.exe
 *.out
 *.app
+
+# Node
+
+node_modules
+
+# React
+
+.module-cache
